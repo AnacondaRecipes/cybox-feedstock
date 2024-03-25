@@ -3,3 +3,4 @@ upload_channels:
 
 channels:
     - https://staging.continuum.io/prefect/fs/mixbox-feedstock/pr1/9cebca3
+    - https://staging.continuum.io/prefect/fs/weakrefmethod-feedstock/pr1/18aab14
