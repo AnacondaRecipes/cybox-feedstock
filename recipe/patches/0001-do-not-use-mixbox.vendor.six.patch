@@ -1,0 +1,2623 @@
+From 098a74e01efc20fa2f7e44ca102ebf1bac3bbc51 Mon Sep 17 00:00:00 2001
+From: Lorenzo Pirritano <lpirritano@anaconda.com>
+Date: Tue, 26 Mar 2024 14:19:15 -0600
+Subject: [PATCH] do not use mixbox.vendor.six
+
+---
+ cybox/__init__.py                                     | 2 +-
+ cybox/bindings/account_object.py                      | 2 +-
+ cybox/bindings/address_object.py                      | 2 +-
+ cybox/bindings/api_object.py                          | 2 +-
+ cybox/bindings/archive_file_object.py                 | 2 +-
+ cybox/bindings/arp_cache_object.py                    | 2 +-
+ cybox/bindings/artifact_object.py                     | 2 +-
+ cybox/bindings/as_object.py                           | 2 +-
+ cybox/bindings/code_object.py                         | 2 +-
+ cybox/bindings/custom_object.py                       | 2 +-
+ cybox/bindings/cybox_common.py                        | 2 +-
+ cybox/bindings/cybox_core.py                          | 2 +-
+ cybox/bindings/device_object.py                       | 2 +-
+ cybox/bindings/disk_object.py                         | 2 +-
+ cybox/bindings/disk_partition_object.py               | 2 +-
+ cybox/bindings/dns_cache_object.py                    | 2 +-
+ cybox/bindings/dns_query_object.py                    | 2 +-
+ cybox/bindings/dns_record_object.py                   | 2 +-
+ cybox/bindings/domain_name_object.py                  | 2 +-
+ cybox/bindings/email_message_object.py                | 2 +-
+ cybox/bindings/extensions/location/ciq_address_3_0.py | 2 +-
+ cybox/bindings/file_object.py                         | 2 +-
+ cybox/bindings/gui_dialogbox_object.py                | 2 +-
+ cybox/bindings/gui_object.py                          | 2 +-
+ cybox/bindings/gui_window_object.py                   | 2 +-
+ cybox/bindings/hostname_object.py                     | 2 +-
+ cybox/bindings/http_session_object.py                 | 2 +-
+ cybox/bindings/image_file_object.py                   | 2 +-
+ cybox/bindings/library_object.py                      | 2 +-
+ cybox/bindings/link_object.py                         | 2 +-
+ cybox/bindings/linux_package_object.py                | 2 +-
+ cybox/bindings/memory_object.py                       | 2 +-
+ cybox/bindings/mutex_object.py                        | 2 +-
+ cybox/bindings/network_connection_object.py           | 2 +-
+ cybox/bindings/network_flow_object.py                 | 2 +-
+ cybox/bindings/network_packet_object.py               | 2 +-
+ cybox/bindings/network_route_entry_object.py          | 2 +-
+ cybox/bindings/network_route_object.py                | 2 +-
+ cybox/bindings/network_socket_object.py               | 2 +-
+ cybox/bindings/network_subnet_object.py               | 2 +-
+ cybox/bindings/pdf_file_object.py                     | 2 +-
+ cybox/bindings/pipe_object.py                         | 2 +-
+ cybox/bindings/port_object.py                         | 2 +-
+ cybox/bindings/process_object.py                      | 2 +-
+ cybox/bindings/product_object.py                      | 2 +-
+ cybox/bindings/semaphore_object.py                    | 2 +-
+ cybox/bindings/sms_message_object.py                  | 2 +-
+ cybox/bindings/socket_address_object.py               | 2 +-
+ cybox/bindings/system_object.py                       | 2 +-
+ cybox/bindings/unix_file_object.py                    | 2 +-
+ cybox/bindings/unix_network_route_entry_object.py     | 2 +-
+ cybox/bindings/unix_pipe_object.py                    | 2 +-
+ cybox/bindings/unix_process_object.py                 | 2 +-
+ cybox/bindings/unix_user_account_object.py            | 2 +-
+ cybox/bindings/unix_volume_object.py                  | 2 +-
+ cybox/bindings/uri_object.py                          | 2 +-
+ cybox/bindings/url_history_object.py                  | 2 +-
+ cybox/bindings/user_account_object.py                 | 2 +-
+ cybox/bindings/user_session_object.py                 | 2 +-
+ cybox/bindings/volume_object.py                       | 2 +-
+ cybox/bindings/whois_object.py                        | 2 +-
+ cybox/bindings/win_computer_account_object.py         | 2 +-
+ cybox/bindings/win_critical_section_object.py         | 2 +-
+ cybox/bindings/win_driver_object.py                   | 2 +-
+ cybox/bindings/win_event_log_object.py                | 2 +-
+ cybox/bindings/win_event_object.py                    | 2 +-
+ cybox/bindings/win_executable_file_object.py          | 2 +-
+ cybox/bindings/win_file_object.py                     | 2 +-
+ cybox/bindings/win_filemapping_object.py              | 2 +-
+ cybox/bindings/win_handle_object.py                   | 2 +-
+ cybox/bindings/win_hook_object.py                     | 2 +-
+ cybox/bindings/win_kernel_hook_object.py              | 2 +-
+ cybox/bindings/win_kernel_object.py                   | 2 +-
+ cybox/bindings/win_mailslot_object.py                 | 2 +-
+ cybox/bindings/win_memory_page_region_object.py       | 2 +-
+ cybox/bindings/win_mutex_object.py                    | 2 +-
+ cybox/bindings/win_network_route_entry_object.py      | 2 +-
+ cybox/bindings/win_network_share_object.py            | 2 +-
+ cybox/bindings/win_pipe_object.py                     | 2 +-
+ cybox/bindings/win_prefetch_object.py                 | 2 +-
+ cybox/bindings/win_process_object.py                  | 2 +-
+ cybox/bindings/win_registry_key_object.py             | 2 +-
+ cybox/bindings/win_semaphore_object.py                | 2 +-
+ cybox/bindings/win_service_object.py                  | 2 +-
+ cybox/bindings/win_system_object.py                   | 2 +-
+ cybox/bindings/win_system_restore_object.py           | 2 +-
+ cybox/bindings/win_task_object.py                     | 2 +-
+ cybox/bindings/win_thread_object.py                   | 2 +-
+ cybox/bindings/win_user_account_object.py             | 2 +-
+ cybox/bindings/win_volume_object.py                   | 2 +-
+ cybox/bindings/win_waitable_timer_object.py           | 2 +-
+ cybox/bindings/x509_certificate_object.py             | 2 +-
+ cybox/common/hashes.py                                | 2 +-
+ cybox/common/properties.py                            | 2 +-
+ cybox/common/structured_text.py                       | 2 +-
+ cybox/common/vocabs.py                                | 2 +-
+ cybox/compat.py                                       | 2 +-
+ cybox/objects/address_object.py                       | 2 +-
+ cybox/objects/artifact_object.py                      | 2 +-
+ cybox/objects/email_message_object.py                 | 2 +-
+ cybox/objects/uri_object.py                           | 2 +-
+ cybox/objects/whois_object.py                         | 2 +-
+ cybox/test/__init__.py                                | 2 +-
+ cybox/test/common/extracted_features_test.py          | 2 +-
+ cybox/test/common/extracted_string_test.py            | 4 ++--
+ cybox/test/common/hash_test.py                        | 2 +-
+ cybox/test/common/measuresource_test.py               | 2 +-
+ cybox/test/common/object_properties_test.py           | 2 +-
+ cybox/test/common/properties_test.py                  | 4 ++--
+ cybox/test/common/structured_text_test.py             | 2 +-
+ cybox/test/common/tools_test.py                       | 2 +-
+ cybox/test/common/vocab_test.py                       | 2 +-
+ cybox/test/core/action_reference_test.py              | 2 +-
+ cybox/test/core/action_test.py                        | 2 +-
+ cybox/test/core/event_test.py                         | 2 +-
+ cybox/test/core/frequency_test.py                     | 2 +-
+ cybox/test/core/object_test.py                        | 2 +-
+ cybox/test/core/observable_test.py                    | 2 +-
+ cybox/test/encoding_test.py                           | 4 ++--
+ cybox/test/extensions/location/ciq_test.py            | 2 +-
+ cybox/test/objects/address_test.py                    | 2 +-
+ cybox/test/objects/archive_file_test.py               | 2 +-
+ cybox/test/objects/arp_cache_test.py                  | 2 +-
+ cybox/test/objects/artifact_test.py                   | 4 ++--
+ cybox/test/objects/as_test.py                         | 2 +-
+ cybox/test/objects/code_test.py                       | 2 +-
+ cybox/test/objects/custom_test.py                     | 2 +-
+ cybox/test/objects/disk_test.py                       | 2 +-
+ cybox/test/objects/dns_record_test.py                 | 2 +-
+ cybox/test/objects/domainname_test.py                 | 2 +-
+ cybox/test/objects/email_message_test.py              | 2 +-
+ cybox/test/objects/file_test.py                       | 2 +-
+ cybox/test/objects/gui_dialogbox_test.py              | 2 +-
+ cybox/test/objects/gui_window_test.py                 | 2 +-
+ cybox/test/objects/http_session_test.py               | 2 +-
+ cybox/test/objects/image_file_test.py                 | 2 +-
+ cybox/test/objects/library_test.py                    | 2 +-
+ cybox/test/objects/link_test.py                       | 2 +-
+ cybox/test/objects/memory_test.py                     | 2 +-
+ cybox/test/objects/network_connection_test.py         | 2 +-
+ cybox/test/objects/network_flow_test.py               | 2 +-
+ cybox/test/objects/network_packet_test.py             | 2 +-
+ cybox/test/objects/network_route_entry_test.py        | 2 +-
+ cybox/test/objects/network_route_test.py              | 2 +-
+ cybox/test/objects/network_socket_test.py             | 2 +-
+ cybox/test/objects/pipe_test.py                       | 2 +-
+ cybox/test/objects/process_test.py                    | 2 +-
+ cybox/test/objects/socket_address_test.py             | 2 +-
+ cybox/test/objects/system_test.py                     | 2 +-
+ cybox/test/objects/unix_file_test.py                  | 2 +-
+ cybox/test/objects/unix_network_route_entry_test.py   | 2 +-
+ cybox/test/objects/unix_pipe_test.py                  | 2 +-
+ cybox/test/objects/unix_process_test.py               | 2 +-
+ cybox/test/objects/unix_user_account_test.py          | 2 +-
+ cybox/test/objects/unix_volume_test.py                | 2 +-
+ cybox/test/objects/uri_test.py                        | 2 +-
+ cybox/test/objects/url_history_test.py                | 2 +-
+ cybox/test/objects/user_account_test.py               | 2 +-
+ cybox/test/objects/volume_test.py                     | 2 +-
+ cybox/test/objects/whois_test.py                      | 2 +-
+ cybox/test/objects/win_computer_account_test.py       | 2 +-
+ cybox/test/objects/win_critical_section_test.py       | 2 +-
+ cybox/test/objects/win_event_test.py                  | 2 +-
+ cybox/test/objects/win_executable_file_test.py        | 2 +-
+ cybox/test/objects/win_file_test.py                   | 2 +-
+ cybox/test/objects/win_filemapping_test.py            | 2 +-
+ cybox/test/objects/win_hook_test.py                   | 2 +-
+ cybox/test/objects/win_memory_page_region_test.py     | 2 +-
+ cybox/test/objects/win_mutex_test.py                  | 2 +-
+ cybox/test/objects/win_network_route_entry_test.py    | 2 +-
+ cybox/test/objects/win_network_share_test.py          | 2 +-
+ cybox/test/objects/win_pipe_test.py                   | 2 +-
+ cybox/test/objects/win_prefetch_test.py               | 2 +-
+ cybox/test/objects/win_process_test.py                | 2 +-
+ cybox/test/objects/win_registry_key_test.py           | 2 +-
+ cybox/test/objects/win_semaphore_test.py              | 2 +-
+ cybox/test/objects/win_service_test.py                | 2 +-
+ cybox/test/objects/win_system_restore_test.py         | 2 +-
+ cybox/test/objects/win_system_test.py                 | 2 +-
+ cybox/test/objects/win_task_test.py                   | 2 +-
+ cybox/test/objects/win_thread_test.py                 | 2 +-
+ cybox/test/objects/win_user_account_test.py           | 2 +-
+ cybox/test/objects/win_volume_test.py                 | 2 +-
+ cybox/test/objects/win_waitable_timer_test.py         | 2 +-
+ cybox/test/objects/x509_certificate_test.py           | 2 +-
+ cybox/utils/__init__.py                               | 2 +-
+ 186 files changed, 190 insertions(+), 190 deletions(-)
+
+diff --git a/cybox/__init__.py b/cybox/__init__.py
+index 3a0ca57..4df6a10 100644
+--- a/cybox/__init__.py
++++ b/cybox/__init__.py
+@@ -2,7 +2,7 @@
+ # See LICENSE.txt for complete terms.
+ 
+ from mixbox import entities
+-from mixbox.vendor import six
++import six
+ 
+ from .version import __version__  # noqa
+ 
+diff --git a/cybox/bindings/account_object.py b/cybox/bindings/account_object.py
+index 270c15a..4e202e5 100644
+--- a/cybox/bindings/account_object.py
++++ b/cybox/bindings/account_object.py
+@@ -475,7 +475,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/address_object.py b/cybox/bindings/address_object.py
+index 5b229cb..1c2fcbc 100644
+--- a/cybox/bindings/address_object.py
++++ b/cybox/bindings/address_object.py
+@@ -305,7 +305,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/api_object.py b/cybox/bindings/api_object.py
+index 6c4b1f6..c450119 100644
+--- a/cybox/bindings/api_object.py
++++ b/cybox/bindings/api_object.py
+@@ -267,7 +267,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/archive_file_object.py b/cybox/bindings/archive_file_object.py
+index e1d9d1a..db1a8b9 100644
+--- a/cybox/bindings/archive_file_object.py
++++ b/cybox/bindings/archive_file_object.py
+@@ -410,7 +410,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/arp_cache_object.py b/cybox/bindings/arp_cache_object.py
+index d303016..aa85d92 100644
+--- a/cybox/bindings/arp_cache_object.py
++++ b/cybox/bindings/arp_cache_object.py
+@@ -452,7 +452,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/artifact_object.py b/cybox/bindings/artifact_object.py
+index 3487cbf..53d36dc 100644
+--- a/cybox/bindings/artifact_object.py
++++ b/cybox/bindings/artifact_object.py
+@@ -768,7 +768,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/as_object.py b/cybox/bindings/as_object.py
+index 1897c25..a86ecf3 100644
+--- a/cybox/bindings/as_object.py
++++ b/cybox/bindings/as_object.py
+@@ -271,7 +271,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/code_object.py b/cybox/bindings/code_object.py
+index 5b6c17c..45023e7 100644
+--- a/cybox/bindings/code_object.py
++++ b/cybox/bindings/code_object.py
+@@ -795,7 +795,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/custom_object.py b/cybox/bindings/custom_object.py
+index 0a625d2..3a71aaf 100644
+--- a/cybox/bindings/custom_object.py
++++ b/cybox/bindings/custom_object.py
+@@ -241,7 +241,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/cybox_common.py b/cybox/bindings/cybox_common.py
+index c92521a..45736ed 100644
+--- a/cybox/bindings/cybox_common.py
++++ b/cybox/bindings/cybox_common.py
+@@ -7913,7 +7913,7 @@ def parse(inFileName):
+ 
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/cybox_core.py b/cybox/bindings/cybox_core.py
+index da4f5f5..d5cfa5c 100644
+--- a/cybox/bindings/cybox_core.py
++++ b/cybox/bindings/cybox_core.py
+@@ -4035,7 +4035,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/device_object.py b/cybox/bindings/device_object.py
+index 7e4fd43..6f92622 100644
+--- a/cybox/bindings/device_object.py
++++ b/cybox/bindings/device_object.py
+@@ -300,7 +300,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/disk_object.py b/cybox/bindings/disk_object.py
+index dc6532b..b91e02d 100644
+--- a/cybox/bindings/disk_object.py
++++ b/cybox/bindings/disk_object.py
+@@ -424,7 +424,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/disk_partition_object.py b/cybox/bindings/disk_partition_object.py
+index 190fdf0..6f663f0 100644
+--- a/cybox/bindings/disk_partition_object.py
++++ b/cybox/bindings/disk_partition_object.py
+@@ -410,7 +410,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/dns_cache_object.py b/cybox/bindings/dns_cache_object.py
+index 4d17be8..f9d2b98 100644
+--- a/cybox/bindings/dns_cache_object.py
++++ b/cybox/bindings/dns_cache_object.py
+@@ -313,7 +313,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/dns_query_object.py b/cybox/bindings/dns_query_object.py
+index fd3bf19..2fa726c 100644
+--- a/cybox/bindings/dns_query_object.py
++++ b/cybox/bindings/dns_query_object.py
+@@ -553,7 +553,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/dns_record_object.py b/cybox/bindings/dns_record_object.py
+index a234439..81acb40 100644
+--- a/cybox/bindings/dns_record_object.py
++++ b/cybox/bindings/dns_record_object.py
+@@ -354,7 +354,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/domain_name_object.py b/cybox/bindings/domain_name_object.py
+index a4f62b0..4b0ec19 100644
+--- a/cybox/bindings/domain_name_object.py
++++ b/cybox/bindings/domain_name_object.py
+@@ -244,7 +244,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/email_message_object.py b/cybox/bindings/email_message_object.py
+index 1510e98..5fe6557 100644
+--- a/cybox/bindings/email_message_object.py
++++ b/cybox/bindings/email_message_object.py
+@@ -1104,7 +1104,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/extensions/location/ciq_address_3_0.py b/cybox/bindings/extensions/location/ciq_address_3_0.py
+index 44d6c13..e209ac1 100644
+--- a/cybox/bindings/extensions/location/ciq_address_3_0.py
++++ b/cybox/bindings/extensions/location/ciq_address_3_0.py
+@@ -250,7 +250,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/file_object.py b/cybox/bindings/file_object.py
+index ff3f207..351cf74 100644
+--- a/cybox/bindings/file_object.py
++++ b/cybox/bindings/file_object.py
+@@ -1327,7 +1327,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/gui_dialogbox_object.py b/cybox/bindings/gui_dialogbox_object.py
+index b240bd8..e246fa6 100644
+--- a/cybox/bindings/gui_dialogbox_object.py
++++ b/cybox/bindings/gui_dialogbox_object.py
+@@ -238,7 +238,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/gui_object.py b/cybox/bindings/gui_object.py
+index f5f918c..f928c9e 100644
+--- a/cybox/bindings/gui_object.py
++++ b/cybox/bindings/gui_object.py
+@@ -234,7 +234,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/gui_window_object.py b/cybox/bindings/gui_window_object.py
+index 93ebc08..f9d4a5d 100644
+--- a/cybox/bindings/gui_window_object.py
++++ b/cybox/bindings/gui_window_object.py
+@@ -248,7 +248,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/hostname_object.py b/cybox/bindings/hostname_object.py
+index 030af62..81cff97 100644
+--- a/cybox/bindings/hostname_object.py
++++ b/cybox/bindings/hostname_object.py
+@@ -266,7 +266,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/http_session_object.py b/cybox/bindings/http_session_object.py
+index 1bedcf8..bd77e6a 100644
+--- a/cybox/bindings/http_session_object.py
++++ b/cybox/bindings/http_session_object.py
+@@ -2007,7 +2007,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/image_file_object.py b/cybox/bindings/image_file_object.py
+index f851ac2..a63dc32 100644
+--- a/cybox/bindings/image_file_object.py
++++ b/cybox/bindings/image_file_object.py
+@@ -402,7 +402,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/library_object.py b/cybox/bindings/library_object.py
+index 533f1a6..0bd6b4f 100644
+--- a/cybox/bindings/library_object.py
++++ b/cybox/bindings/library_object.py
+@@ -364,7 +364,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/link_object.py b/cybox/bindings/link_object.py
+index 13ef0b5..1f88e31 100644
+--- a/cybox/bindings/link_object.py
++++ b/cybox/bindings/link_object.py
+@@ -192,7 +192,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/linux_package_object.py b/cybox/bindings/linux_package_object.py
+index cb56359..5831830 100644
+--- a/cybox/bindings/linux_package_object.py
++++ b/cybox/bindings/linux_package_object.py
+@@ -311,7 +311,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/memory_object.py b/cybox/bindings/memory_object.py
+index a35778c..541a54f 100644
+--- a/cybox/bindings/memory_object.py
++++ b/cybox/bindings/memory_object.py
+@@ -444,7 +444,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/mutex_object.py b/cybox/bindings/mutex_object.py
+index 01804a7..b82457e 100644
+--- a/cybox/bindings/mutex_object.py
++++ b/cybox/bindings/mutex_object.py
+@@ -238,7 +238,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/network_connection_object.py b/cybox/bindings/network_connection_object.py
+index a29f980..f9a0007 100644
+--- a/cybox/bindings/network_connection_object.py
++++ b/cybox/bindings/network_connection_object.py
+@@ -662,7 +662,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/network_flow_object.py b/cybox/bindings/network_flow_object.py
+index a1efdd7..1a6f78d 100644
+--- a/cybox/bindings/network_flow_object.py
++++ b/cybox/bindings/network_flow_object.py
+@@ -5200,7 +5200,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/network_packet_object.py b/cybox/bindings/network_packet_object.py
+index 561f539..6914e9c 100644
+--- a/cybox/bindings/network_packet_object.py
++++ b/cybox/bindings/network_packet_object.py
+@@ -9102,7 +9102,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/network_route_entry_object.py b/cybox/bindings/network_route_entry_object.py
+index 5054e39..64f11d9 100644
+--- a/cybox/bindings/network_route_entry_object.py
++++ b/cybox/bindings/network_route_entry_object.py
+@@ -502,7 +502,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/network_route_object.py b/cybox/bindings/network_route_object.py
+index 7e45caf..2a29469 100644
+--- a/cybox/bindings/network_route_object.py
++++ b/cybox/bindings/network_route_object.py
+@@ -422,7 +422,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/network_socket_object.py b/cybox/bindings/network_socket_object.py
+index e56445f..21ca006 100644
+--- a/cybox/bindings/network_socket_object.py
++++ b/cybox/bindings/network_socket_object.py
+@@ -988,7 +988,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/network_subnet_object.py b/cybox/bindings/network_subnet_object.py
+index ac8abb8..f77417b 100644
+--- a/cybox/bindings/network_subnet_object.py
++++ b/cybox/bindings/network_subnet_object.py
+@@ -341,7 +341,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/pdf_file_object.py b/cybox/bindings/pdf_file_object.py
+index 06ce9b8..19b746e 100644
+--- a/cybox/bindings/pdf_file_object.py
++++ b/cybox/bindings/pdf_file_object.py
+@@ -2209,7 +2209,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/pipe_object.py b/cybox/bindings/pipe_object.py
+index 04e16d5..25e17fd 100644
+--- a/cybox/bindings/pipe_object.py
++++ b/cybox/bindings/pipe_object.py
+@@ -237,7 +237,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/port_object.py b/cybox/bindings/port_object.py
+index 5ff110f..5f2da27 100644
+--- a/cybox/bindings/port_object.py
++++ b/cybox/bindings/port_object.py
+@@ -311,7 +311,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/process_object.py b/cybox/bindings/process_object.py
+index 3f6ac3c..70f3c2a 100644
+--- a/cybox/bindings/process_object.py
++++ b/cybox/bindings/process_object.py
+@@ -940,7 +940,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/product_object.py b/cybox/bindings/product_object.py
+index b0b759d..a3cf899 100644
+--- a/cybox/bindings/product_object.py
++++ b/cybox/bindings/product_object.py
+@@ -304,7 +304,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/semaphore_object.py b/cybox/bindings/semaphore_object.py
+index 0f77894..77a4dbd 100644
+--- a/cybox/bindings/semaphore_object.py
++++ b/cybox/bindings/semaphore_object.py
+@@ -266,7 +266,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/sms_message_object.py b/cybox/bindings/sms_message_object.py
+index a1896ec..db07d64 100644
+--- a/cybox/bindings/sms_message_object.py
++++ b/cybox/bindings/sms_message_object.py
+@@ -345,7 +345,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/socket_address_object.py b/cybox/bindings/socket_address_object.py
+index 73456ad..5022935 100644
+--- a/cybox/bindings/socket_address_object.py
++++ b/cybox/bindings/socket_address_object.py
+@@ -249,7 +249,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/system_object.py b/cybox/bindings/system_object.py
+index e11c3a3..c7e99e9 100644
+--- a/cybox/bindings/system_object.py
++++ b/cybox/bindings/system_object.py
+@@ -1283,7 +1283,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/unix_file_object.py b/cybox/bindings/unix_file_object.py
+index 0fb83b4..73cf673 100644
+--- a/cybox/bindings/unix_file_object.py
++++ b/cybox/bindings/unix_file_object.py
+@@ -592,7 +592,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/unix_network_route_entry_object.py b/cybox/bindings/unix_network_route_entry_object.py
+index 0ab12f7..aa37668 100644
+--- a/cybox/bindings/unix_network_route_entry_object.py
++++ b/cybox/bindings/unix_network_route_entry_object.py
+@@ -283,7 +283,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/unix_pipe_object.py b/cybox/bindings/unix_pipe_object.py
+index 000b7b4..0852c0a 100644
+--- a/cybox/bindings/unix_pipe_object.py
++++ b/cybox/bindings/unix_pipe_object.py
+@@ -224,7 +224,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/unix_process_object.py b/cybox/bindings/unix_process_object.py
+index ba88b8a..53a8162 100644
+--- a/cybox/bindings/unix_process_object.py
++++ b/cybox/bindings/unix_process_object.py
+@@ -596,7 +596,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/unix_user_account_object.py b/cybox/bindings/unix_user_account_object.py
+index ad63a43..03dd5ee 100644
+--- a/cybox/bindings/unix_user_account_object.py
++++ b/cybox/bindings/unix_user_account_object.py
+@@ -425,7 +425,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/unix_volume_object.py b/cybox/bindings/unix_volume_object.py
+index 3964416..dc57919 100644
+--- a/cybox/bindings/unix_volume_object.py
++++ b/cybox/bindings/unix_volume_object.py
+@@ -246,7 +246,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/uri_object.py b/cybox/bindings/uri_object.py
+index e56cf92..ea83025 100644
+--- a/cybox/bindings/uri_object.py
++++ b/cybox/bindings/uri_object.py
+@@ -233,7 +233,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/url_history_object.py b/cybox/bindings/url_history_object.py
+index b5f51f5..9511dd3 100644
+--- a/cybox/bindings/url_history_object.py
++++ b/cybox/bindings/url_history_object.py
+@@ -432,7 +432,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/user_account_object.py b/cybox/bindings/user_account_object.py
+index d72544d..8bf20f7 100644
+--- a/cybox/bindings/user_account_object.py
++++ b/cybox/bindings/user_account_object.py
+@@ -599,7 +599,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/user_session_object.py b/cybox/bindings/user_session_object.py
+index 98c6ddd..6732b8d 100644
+--- a/cybox/bindings/user_session_object.py
++++ b/cybox/bindings/user_session_object.py
+@@ -281,7 +281,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/volume_object.py b/cybox/bindings/volume_object.py
+index a18ff16..b4e8578 100644
+--- a/cybox/bindings/volume_object.py
++++ b/cybox/bindings/volume_object.py
+@@ -549,7 +549,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/whois_object.py b/cybox/bindings/whois_object.py
+index 5d957cd..0bb495e 100644
+--- a/cybox/bindings/whois_object.py
++++ b/cybox/bindings/whois_object.py
+@@ -1177,7 +1177,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_computer_account_object.py b/cybox/bindings/win_computer_account_object.py
+index 0449a2b..8d1ed71 100644
+--- a/cybox/bindings/win_computer_account_object.py
++++ b/cybox/bindings/win_computer_account_object.py
+@@ -608,7 +608,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_critical_section_object.py b/cybox/bindings/win_critical_section_object.py
+index 093332c..a29e760 100644
+--- a/cybox/bindings/win_critical_section_object.py
++++ b/cybox/bindings/win_critical_section_object.py
+@@ -236,7 +236,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_driver_object.py b/cybox/bindings/win_driver_object.py
+index b4b683c..db7807f 100644
+--- a/cybox/bindings/win_driver_object.py
++++ b/cybox/bindings/win_driver_object.py
+@@ -833,7 +833,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_event_log_object.py b/cybox/bindings/win_event_log_object.py
+index 28fc677..3f2bb31 100644
+--- a/cybox/bindings/win_event_log_object.py
++++ b/cybox/bindings/win_event_log_object.py
+@@ -501,7 +501,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_event_object.py b/cybox/bindings/win_event_object.py
+index b144cc4..22981df 100644
+--- a/cybox/bindings/win_event_object.py
++++ b/cybox/bindings/win_event_object.py
+@@ -326,7 +326,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_executable_file_object.py b/cybox/bindings/win_executable_file_object.py
+index b6d1234..dc8709f 100644
+--- a/cybox/bindings/win_executable_file_object.py
++++ b/cybox/bindings/win_executable_file_object.py
+@@ -3546,7 +3546,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_file_object.py b/cybox/bindings/win_file_object.py
+index a4d739c..07dddd2 100644
+--- a/cybox/bindings/win_file_object.py
++++ b/cybox/bindings/win_file_object.py
+@@ -774,7 +774,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_filemapping_object.py b/cybox/bindings/win_filemapping_object.py
+index d4bd7e4..ff17078 100644
+--- a/cybox/bindings/win_filemapping_object.py
++++ b/cybox/bindings/win_filemapping_object.py
+@@ -455,7 +455,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_handle_object.py b/cybox/bindings/win_handle_object.py
+index 48803b4..dbde00b 100644
+--- a/cybox/bindings/win_handle_object.py
++++ b/cybox/bindings/win_handle_object.py
+@@ -428,7 +428,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_hook_object.py b/cybox/bindings/win_hook_object.py
+index d982b91..43af776 100644
+--- a/cybox/bindings/win_hook_object.py
++++ b/cybox/bindings/win_hook_object.py
+@@ -359,7 +359,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_kernel_hook_object.py b/cybox/bindings/win_kernel_hook_object.py
+index dcd16b3..2b8d5dd 100644
+--- a/cybox/bindings/win_kernel_hook_object.py
++++ b/cybox/bindings/win_kernel_hook_object.py
+@@ -379,7 +379,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_kernel_object.py b/cybox/bindings/win_kernel_object.py
+index 4bacc3b..3f31c79 100644
+--- a/cybox/bindings/win_kernel_object.py
++++ b/cybox/bindings/win_kernel_object.py
+@@ -601,7 +601,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_mailslot_object.py b/cybox/bindings/win_mailslot_object.py
+index b9392dd..2c33569 100644
+--- a/cybox/bindings/win_mailslot_object.py
++++ b/cybox/bindings/win_mailslot_object.py
+@@ -275,7 +275,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_memory_page_region_object.py b/cybox/bindings/win_memory_page_region_object.py
+index 26abfaf..0cf1fa7 100644
+--- a/cybox/bindings/win_memory_page_region_object.py
++++ b/cybox/bindings/win_memory_page_region_object.py
+@@ -500,7 +500,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_mutex_object.py b/cybox/bindings/win_mutex_object.py
+index acfab57..ee1c449 100644
+--- a/cybox/bindings/win_mutex_object.py
++++ b/cybox/bindings/win_mutex_object.py
+@@ -242,7 +242,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_network_route_entry_object.py b/cybox/bindings/win_network_route_entry_object.py
+index 5fed858..8d243b8 100644
+--- a/cybox/bindings/win_network_route_entry_object.py
++++ b/cybox/bindings/win_network_route_entry_object.py
+@@ -401,7 +401,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_network_share_object.py b/cybox/bindings/win_network_share_object.py
+index deacc30..ae10012 100644
+--- a/cybox/bindings/win_network_share_object.py
++++ b/cybox/bindings/win_network_share_object.py
+@@ -467,7 +467,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_pipe_object.py b/cybox/bindings/win_pipe_object.py
+index 929faf6..89cddb5 100644
+--- a/cybox/bindings/win_pipe_object.py
++++ b/cybox/bindings/win_pipe_object.py
+@@ -314,7 +314,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_prefetch_object.py b/cybox/bindings/win_prefetch_object.py
+index 7a104a5..df135db 100644
+--- a/cybox/bindings/win_prefetch_object.py
++++ b/cybox/bindings/win_prefetch_object.py
+@@ -557,7 +557,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_process_object.py b/cybox/bindings/win_process_object.py
+index a27e6a5..1c822fb 100644
+--- a/cybox/bindings/win_process_object.py
++++ b/cybox/bindings/win_process_object.py
+@@ -734,7 +734,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_registry_key_object.py b/cybox/bindings/win_registry_key_object.py
+index a6189ef..42c8f20 100644
+--- a/cybox/bindings/win_registry_key_object.py
++++ b/cybox/bindings/win_registry_key_object.py
+@@ -722,7 +722,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_semaphore_object.py b/cybox/bindings/win_semaphore_object.py
+index fdd1773..ccee370 100644
+--- a/cybox/bindings/win_semaphore_object.py
++++ b/cybox/bindings/win_semaphore_object.py
+@@ -244,7 +244,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_service_object.py b/cybox/bindings/win_service_object.py
+index de0eb63..b039c45 100644
+--- a/cybox/bindings/win_service_object.py
++++ b/cybox/bindings/win_service_object.py
+@@ -810,7 +810,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_system_object.py b/cybox/bindings/win_system_object.py
+index 0df1e61..bd11067 100644
+--- a/cybox/bindings/win_system_object.py
++++ b/cybox/bindings/win_system_object.py
+@@ -553,7 +553,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_system_restore_object.py b/cybox/bindings/win_system_restore_object.py
+index 9eda684..f216b37 100644
+--- a/cybox/bindings/win_system_restore_object.py
++++ b/cybox/bindings/win_system_restore_object.py
+@@ -572,7 +572,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_task_object.py b/cybox/bindings/win_task_object.py
+index 7cbab28..daf6af9 100644
+--- a/cybox/bindings/win_task_object.py
++++ b/cybox/bindings/win_task_object.py
+@@ -1595,7 +1595,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_thread_object.py b/cybox/bindings/win_thread_object.py
+index 6383cf5..50b8886 100644
+--- a/cybox/bindings/win_thread_object.py
++++ b/cybox/bindings/win_thread_object.py
+@@ -429,7 +429,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_user_account_object.py b/cybox/bindings/win_user_account_object.py
+index 27bd942..5923e40 100644
+--- a/cybox/bindings/win_user_account_object.py
++++ b/cybox/bindings/win_user_account_object.py
+@@ -411,7 +411,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_volume_object.py b/cybox/bindings/win_volume_object.py
+index 06b3814..6035d5d 100644
+--- a/cybox/bindings/win_volume_object.py
++++ b/cybox/bindings/win_volume_object.py
+@@ -478,7 +478,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/win_waitable_timer_object.py b/cybox/bindings/win_waitable_timer_object.py
+index 231ed8c..abed7d6 100644
+--- a/cybox/bindings/win_waitable_timer_object.py
++++ b/cybox/bindings/win_waitable_timer_object.py
+@@ -337,7 +337,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/bindings/x509_certificate_object.py b/cybox/bindings/x509_certificate_object.py
+index 1b55d77..a1615ca 100644
+--- a/cybox/bindings/x509_certificate_object.py
++++ b/cybox/bindings/x509_certificate_object.py
+@@ -1042,7 +1042,7 @@ def parseEtree(inFileName):
+     return rootObj, rootElement
+ 
+ def parseString(inString):
+-    from mixbox.vendor.six import StringIO
++    from six import StringIO
+     doc = parsexml_(StringIO(inString))
+     rootNode = doc.getroot()
+     rootTag, rootClass = get_root_tag(rootNode)
+diff --git a/cybox/common/hashes.py b/cybox/common/hashes.py
+index c749f21..dfd24d9 100644
+--- a/cybox/common/hashes.py
++++ b/cybox/common/hashes.py
+@@ -2,7 +2,7 @@
+ # See LICENSE.txt for complete terms.
+ 
+ from mixbox import entities, fields
+-from mixbox.vendor.six import u
++from six import u
+ 
+ import cybox.bindings.cybox_common as common_binding
+ from cybox.common import HexBinary, String, VocabString
+diff --git a/cybox/common/properties.py b/cybox/common/properties.py
+index 6be9b9c..5c8aab2 100644
+--- a/cybox/common/properties.py
++++ b/cybox/common/properties.py
+@@ -2,7 +2,7 @@
+ # See LICENSE.txt for complete terms.
+ from mixbox import entities
+ from mixbox import fields
+-from mixbox.vendor import six
++import six
+ 
+ import cybox.bindings.cybox_common as common_binding
+ from cybox.common.attribute_groups import PatternFieldGroup
+diff --git a/cybox/common/structured_text.py b/cybox/common/structured_text.py
+index f74f6b3..a139f5a 100644
+--- a/cybox/common/structured_text.py
++++ b/cybox/common/structured_text.py
+@@ -3,7 +3,7 @@
+ 
+ from mixbox import entities
+ from mixbox import fields
+-from mixbox.vendor import six
++import six
+ 
+ import cybox.bindings.cybox_common as common_binding
+ 
+diff --git a/cybox/common/vocabs.py b/cybox/common/vocabs.py
+index ef4a578..4b06ebb 100644
+--- a/cybox/common/vocabs.py
++++ b/cybox/common/vocabs.py
+@@ -7,7 +7,7 @@ import functools
+ from mixbox import entities
+ from mixbox import fields
+ from mixbox import typedlist
+-from mixbox.vendor import six
++import six
+ 
+ import cybox.bindings.cybox_common as common_binding
+ from cybox.common import PatternFieldGroup
+diff --git a/cybox/compat.py b/cybox/compat.py
+index c736e7d..5e66c32 100644
+--- a/cybox/compat.py
++++ b/cybox/compat.py
+@@ -7,7 +7,7 @@ Compatibility library for python-cybox.
+ Only covers things that aren't already present in `six`.
+ """
+ 
+-from mixbox.vendor import six
++import six
+ 
+ if six.PY2:
+     long = long
+diff --git a/cybox/objects/address_object.py b/cybox/objects/address_object.py
+index 5da46fa..6ecf4ba 100644
+--- a/cybox/objects/address_object.py
++++ b/cybox/objects/address_object.py
+@@ -2,7 +2,7 @@
+ # See LICENSE.txt for complete terms.
+ 
+ from mixbox import fields
+-from mixbox.vendor import six
++import six
+ 
+ import cybox.bindings.address_object as address_binding
+ from cybox.common import ObjectProperties, String, Integer
+diff --git a/cybox/objects/artifact_object.py b/cybox/objects/artifact_object.py
+index 9a8bc22..c9d88c1 100644
+--- a/cybox/objects/artifact_object.py
++++ b/cybox/objects/artifact_object.py
+@@ -6,7 +6,7 @@ import zlib
+ 
+ from mixbox import entities
+ from mixbox import fields
+-from mixbox.vendor import six
++import six
+ from mixbox.compat import xor
+ 
+ import cybox.bindings.artifact_object as artifact_binding
+diff --git a/cybox/objects/email_message_object.py b/cybox/objects/email_message_object.py
+index 1d3957e..7a54312 100644
+--- a/cybox/objects/email_message_object.py
++++ b/cybox/objects/email_message_object.py
+@@ -3,7 +3,7 @@
+ 
+ from mixbox import entities
+ from mixbox import fields
+-from mixbox.vendor import six
++import six
+ 
+ import cybox.bindings.email_message_object as email_message_binding
+ from cybox.common import ObjectProperties, String, PositiveInteger, DateTime
+diff --git a/cybox/objects/uri_object.py b/cybox/objects/uri_object.py
+index 876e359..464ea09 100644
+--- a/cybox/objects/uri_object.py
++++ b/cybox/objects/uri_object.py
+@@ -2,7 +2,7 @@
+ # See LICENSE.txt for complete terms.
+ 
+ from mixbox import fields
+-from mixbox.vendor import six
++import six
+ 
+ import cybox.bindings.uri_object as uri_binding
+ from cybox.common import ObjectProperties, AnyURI
+diff --git a/cybox/objects/whois_object.py b/cybox/objects/whois_object.py
+index 3c1db37..43c388e 100644
+--- a/cybox/objects/whois_object.py
++++ b/cybox/objects/whois_object.py
+@@ -3,7 +3,7 @@
+ 
+ from mixbox import entities
+ from mixbox import fields
+-from mixbox.vendor.six import u
++from six import u
+ 
+ import cybox.bindings.whois_object as whois_binding
+ 
+diff --git a/cybox/test/__init__.py b/cybox/test/__init__.py
+index 90e096f..0b96619 100644
+--- a/cybox/test/__init__.py
++++ b/cybox/test/__init__.py
+@@ -8,7 +8,7 @@ import collections
+ 
+ from mixbox.binding_utils import ExternalEncoding
+ from mixbox.entities import Entity
+-from mixbox.vendor import six
++import six
+ 
+ import cybox.utils
+ 
+diff --git a/cybox/test/common/extracted_features_test.py b/cybox/test/common/extracted_features_test.py
+index 2147765..f13d7c9 100644
+--- a/cybox/test/common/extracted_features_test.py
++++ b/cybox/test/common/extracted_features_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.common import ExtractedFeatures
+ from cybox.objects.address_object import Address
+diff --git a/cybox/test/common/extracted_string_test.py b/cybox/test/common/extracted_string_test.py
+index 1f60797..88f5c55 100644
+--- a/cybox/test/common/extracted_string_test.py
++++ b/cybox/test/common/extracted_string_test.py
+@@ -4,8 +4,8 @@
+ import binascii
+ import unittest
+ 
+-from mixbox.vendor import six
+-from mixbox.vendor.six import u
++import six
++from six import u
+ 
+ from cybox.common import ExtractedString, Hash
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/common/hash_test.py b/cybox/test/common/hash_test.py
+index fe71dab..aca4ce4 100644
+--- a/cybox/test/common/hash_test.py
++++ b/cybox/test/common/hash_test.py
+@@ -4,7 +4,7 @@
+ import logging
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.common import Hash, HashList, HashName, HexBinary
+ import cybox.test
+diff --git a/cybox/test/common/measuresource_test.py b/cybox/test/common/measuresource_test.py
+index a08d8ae..fd67040 100644
+--- a/cybox/test/common/measuresource_test.py
++++ b/cybox/test/common/measuresource_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.common import MeasureSource
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/common/object_properties_test.py b/cybox/test/common/object_properties_test.py
+index b00a4ba..0488061 100644
+--- a/cybox/test/common/object_properties_test.py
++++ b/cybox/test/common/object_properties_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.common import ObjectProperties, Property
+ from cybox.common.object_properties import ObjectPropertiesFactory
+diff --git a/cybox/test/common/properties_test.py b/cybox/test/common/properties_test.py
+index 9a1296a..7a39eac 100644
+--- a/cybox/test/common/properties_test.py
++++ b/cybox/test/common/properties_test.py
+@@ -4,8 +4,8 @@
+ import datetime
+ import unittest
+ 
+-from mixbox.vendor import six
+-from mixbox.vendor.six import u
++import six
++from six import u
+ 
+ from cybox.common import (BaseProperty, DateTime, Integer, Long,
+         NonNegativeInteger, PositiveInteger, String, UnsignedInteger,
+diff --git a/cybox/test/common/structured_text_test.py b/cybox/test/common/structured_text_test.py
+index a216168..b24c823 100644
+--- a/cybox/test/common/structured_text_test.py
++++ b/cybox/test/common/structured_text_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import text_type, u
++from six import text_type, u
+ 
+ from cybox.common import StructuredText
+ import cybox.test
+diff --git a/cybox/test/common/tools_test.py b/cybox/test/common/tools_test.py
+index b9ebc31..041e63f 100644
+--- a/cybox/test/common/tools_test.py
++++ b/cybox/test/common/tools_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.common import Hash, ToolInformation, ToolInformationList
+ import cybox.test
+diff --git a/cybox/test/common/vocab_test.py b/cybox/test/common/vocab_test.py
+index 1944b74..efb4480 100644
+--- a/cybox/test/common/vocab_test.py
++++ b/cybox/test/common/vocab_test.py
+@@ -4,7 +4,7 @@
+ import unittest
+ 
+ from mixbox import entities
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.bindings import cybox_common as common_binding
+ from cybox.common import HashName, VocabString
+diff --git a/cybox/test/core/action_reference_test.py b/cybox/test/core/action_reference_test.py
+index 1c6d7f2..47cc51f 100644
+--- a/cybox/test/core/action_reference_test.py
++++ b/cybox/test/core/action_reference_test.py
+@@ -4,7 +4,7 @@
+ import logging
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.core import ActionReference
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/core/action_test.py b/cybox/test/core/action_test.py
+index 4341dc1..2b1fce6 100644
+--- a/cybox/test/core/action_test.py
++++ b/cybox/test/core/action_test.py
+@@ -4,7 +4,7 @@
+ import copy
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.bindings.cybox_core import parseString
+ from cybox.core import Action, ActionRelationship
+diff --git a/cybox/test/core/event_test.py b/cybox/test/core/event_test.py
+index 31cd847..d3689b2 100644
+--- a/cybox/test/core/event_test.py
++++ b/cybox/test/core/event_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.core import Event, Observable
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/core/frequency_test.py b/cybox/test/core/frequency_test.py
+index 8d696b8..a222ee2 100644
+--- a/cybox/test/core/frequency_test.py
++++ b/cybox/test/core/frequency_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.core import Frequency
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/core/object_test.py b/cybox/test/core/object_test.py
+index ba8b188..453bef4 100644
+--- a/cybox/test/core/object_test.py
++++ b/cybox/test/core/object_test.py
+@@ -4,7 +4,7 @@
+ import logging
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ from cybox.core import Object, Observables, RelatedObject
+ from cybox.objects.address_object import Address
+ from cybox.objects.uri_object import URI
+diff --git a/cybox/test/core/observable_test.py b/cybox/test/core/observable_test.py
+index 4b82bb2..4343ec6 100644
+--- a/cybox/test/core/observable_test.py
++++ b/cybox/test/core/observable_test.py
+@@ -4,7 +4,7 @@
+ import logging
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.common import MeasureSource, ObjectProperties, String, StructuredText
+ from cybox.core import (Event, Object, Observable, ObservableComposition,
+diff --git a/cybox/test/encoding_test.py b/cybox/test/encoding_test.py
+index 9db59e5..aa0955b 100644
+--- a/cybox/test/encoding_test.py
++++ b/cybox/test/encoding_test.py
+@@ -6,8 +6,8 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor import six
+-from mixbox.vendor.six import u
++import six
++from six import u
+ 
+ from cybox.common import Contributor, String, MeasureSource
+ from cybox.core import Observable
+diff --git a/cybox/test/extensions/location/ciq_test.py b/cybox/test/extensions/location/ciq_test.py
+index 87c2e36..9df670d 100644
+--- a/cybox/test/extensions/location/ciq_test.py
++++ b/cybox/test/extensions/location/ciq_test.py
+@@ -5,7 +5,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import StringIO
++from six import StringIO
+ 
+ class CIQAddressTests(unittest.TestCase):
+ 
+diff --git a/cybox/test/objects/address_test.py b/cybox/test/objects/address_test.py
+index 52dfcb3..ae79097 100644
+--- a/cybox/test/objects/address_test.py
++++ b/cybox/test/objects/address_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.common import String
+ from cybox.objects.address_object import Address, EmailAddress
+diff --git a/cybox/test/objects/archive_file_test.py b/cybox/test/objects/archive_file_test.py
+index 88ce256..0fa7de6 100644
+--- a/cybox/test/objects/archive_file_test.py
++++ b/cybox/test/objects/archive_file_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.archive_file_object import ArchiveFile
+ 
+diff --git a/cybox/test/objects/arp_cache_test.py b/cybox/test/objects/arp_cache_test.py
+index e33e826..5bcfa9f 100644
+--- a/cybox/test/objects/arp_cache_test.py
++++ b/cybox/test/objects/arp_cache_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.address_object import Address
+ from cybox.objects.arp_cache_object import ARPCache
+diff --git a/cybox/test/objects/artifact_test.py b/cybox/test/objects/artifact_test.py
+index e8445e4..b1c3118 100644
+--- a/cybox/test/objects/artifact_test.py
++++ b/cybox/test/objects/artifact_test.py
+@@ -5,8 +5,8 @@ import base64
+ import unittest
+ from zlib import compress
+ 
+-from mixbox.vendor import six
+-from mixbox.vendor.six import u
++import six
++from six import u
+ 
+ from cybox.objects.artifact_object import (Artifact, Base64Encoding,
+                                            Bz2Compression, Encoding, EncodingFactory, Packaging, RawArtifact,
+diff --git a/cybox/test/objects/as_test.py b/cybox/test/objects/as_test.py
+index 7ce9cc6..c633b05 100644
+--- a/cybox/test/objects/as_test.py
++++ b/cybox/test/objects/as_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.as_object import AutonomousSystem
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/code_test.py b/cybox/test/objects/code_test.py
+index 7510bdc..420c84d 100644
+--- a/cybox/test/objects/code_test.py
++++ b/cybox/test/objects/code_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.code_object import Code
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/custom_test.py b/cybox/test/objects/custom_test.py
+index b4afc79..def821e 100644
+--- a/cybox/test/objects/custom_test.py
++++ b/cybox/test/objects/custom_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.custom_object import Custom
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/disk_test.py b/cybox/test/objects/disk_test.py
+index 1c84caa..3782be6 100644
+--- a/cybox/test/objects/disk_test.py
++++ b/cybox/test/objects/disk_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.disk_object import Disk
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/dns_record_test.py b/cybox/test/objects/dns_record_test.py
+index ee0d38e..c85c904 100644
+--- a/cybox/test/objects/dns_record_test.py
++++ b/cybox/test/objects/dns_record_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.dns_record_object import DNSRecord
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/domainname_test.py b/cybox/test/objects/domainname_test.py
+index aad950a..0a47be3 100644
+--- a/cybox/test/objects/domainname_test.py
++++ b/cybox/test/objects/domainname_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.domain_name_object import DomainName
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/email_message_test.py b/cybox/test/objects/email_message_test.py
+index 32b39b5..92111d0 100644
+--- a/cybox/test/objects/email_message_test.py
++++ b/cybox/test/objects/email_message_test.py
+@@ -5,7 +5,7 @@ import datetime
+ import logging
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.common import String, DateTime
+ from cybox.core import Observables
+diff --git a/cybox/test/objects/file_test.py b/cybox/test/objects/file_test.py
+index 8a4fed2..96f0fd4 100644
+--- a/cybox/test/objects/file_test.py
++++ b/cybox/test/objects/file_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.file_object import File, FilePath, Packer, SymLinksList
+ 
+diff --git a/cybox/test/objects/gui_dialogbox_test.py b/cybox/test/objects/gui_dialogbox_test.py
+index e7f6842..fff0307 100644
+--- a/cybox/test/objects/gui_dialogbox_test.py
++++ b/cybox/test/objects/gui_dialogbox_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.gui_dialogbox_object import GUIDialogbox
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/gui_window_test.py b/cybox/test/objects/gui_window_test.py
+index 0e84146..f4bf132 100644
+--- a/cybox/test/objects/gui_window_test.py
++++ b/cybox/test/objects/gui_window_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.gui_window_object import GUIWindow
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/http_session_test.py b/cybox/test/objects/http_session_test.py
+index f545539..23a2255 100644
+--- a/cybox/test/objects/http_session_test.py
++++ b/cybox/test/objects/http_session_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.address_object import Address
+ from cybox.objects.http_session_object import HTTPSession
+diff --git a/cybox/test/objects/image_file_test.py b/cybox/test/objects/image_file_test.py
+index 3ee58a8..240a197 100644
+--- a/cybox/test/objects/image_file_test.py
++++ b/cybox/test/objects/image_file_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.image_file_object import ImageFile
+ 
+diff --git a/cybox/test/objects/library_test.py b/cybox/test/objects/library_test.py
+index c3afc1a..8a1e372 100644
+--- a/cybox/test/objects/library_test.py
++++ b/cybox/test/objects/library_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.library_object import Library
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/link_test.py b/cybox/test/objects/link_test.py
+index d898ef5..f37cd61 100644
+--- a/cybox/test/objects/link_test.py
++++ b/cybox/test/objects/link_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.core import Observables
+ from cybox.objects.link_object import Link
+diff --git a/cybox/test/objects/memory_test.py b/cybox/test/objects/memory_test.py
+index 7c0ca8f..91b7a6f 100644
+--- a/cybox/test/objects/memory_test.py
++++ b/cybox/test/objects/memory_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.memory_object import Memory
+ 
+diff --git a/cybox/test/objects/network_connection_test.py b/cybox/test/objects/network_connection_test.py
+index 7072f77..9847b8f 100644
+--- a/cybox/test/objects/network_connection_test.py
++++ b/cybox/test/objects/network_connection_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.address_object import Address
+ from cybox.objects.network_connection_object import (Layer7Connections,
+diff --git a/cybox/test/objects/network_flow_test.py b/cybox/test/objects/network_flow_test.py
+index b82ef06..5803b67 100644
+--- a/cybox/test/objects/network_flow_test.py
++++ b/cybox/test/objects/network_flow_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.network_flow_object import (
+     BidirectionalRecord, IPFIXDataSet, IPFIXTemplateRecord, IPFIXDataRecord,
+diff --git a/cybox/test/objects/network_packet_test.py b/cybox/test/objects/network_packet_test.py
+index 1d8cda0..ba93a42 100644
+--- a/cybox/test/objects/network_packet_test.py
++++ b/cybox/test/objects/network_packet_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.bindings.cybox_core import parseString
+ from cybox.core import Observables
+diff --git a/cybox/test/objects/network_route_entry_test.py b/cybox/test/objects/network_route_entry_test.py
+index e4f6312..3f28b15 100644
+--- a/cybox/test/objects/network_route_entry_test.py
++++ b/cybox/test/objects/network_route_entry_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.compat import long
+ from cybox.objects.address_object import Address
+diff --git a/cybox/test/objects/network_route_test.py b/cybox/test/objects/network_route_test.py
+index 50b974d..6c7280c 100644
+--- a/cybox/test/objects/network_route_test.py
++++ b/cybox/test/objects/network_route_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.network_route_object import NetRoute
+ 
+diff --git a/cybox/test/objects/network_socket_test.py b/cybox/test/objects/network_socket_test.py
+index 0253b06..9f227ac 100644
+--- a/cybox/test/objects/network_socket_test.py
++++ b/cybox/test/objects/network_socket_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.address_object import Address
+ from cybox.objects.network_socket_object import NetworkSocket, SocketOptions
+diff --git a/cybox/test/objects/pipe_test.py b/cybox/test/objects/pipe_test.py
+index 3a5a898..47f2b54 100644
+--- a/cybox/test/objects/pipe_test.py
++++ b/cybox/test/objects/pipe_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.pipe_object import Pipe
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/process_test.py b/cybox/test/objects/process_test.py
+index 9295195..ea7427e 100644
+--- a/cybox/test/objects/process_test.py
++++ b/cybox/test/objects/process_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.process_object import (ArgumentList, ChildPIDList,
+                                           ImageInfo, NetworkConnectionList,
+diff --git a/cybox/test/objects/socket_address_test.py b/cybox/test/objects/socket_address_test.py
+index a372351..e33ce1b 100644
+--- a/cybox/test/objects/socket_address_test.py
++++ b/cybox/test/objects/socket_address_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.address_object import Address
+ from cybox.objects.socket_address_object import SocketAddress
+diff --git a/cybox/test/objects/system_test.py b/cybox/test/objects/system_test.py
+index 71ba790..7ac23bc 100644
+--- a/cybox/test/objects/system_test.py
++++ b/cybox/test/objects/system_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.system_object import (BIOSInfo, DHCPServerList,
+                                          IPGatewayList, IPInfo,
+diff --git a/cybox/test/objects/unix_file_test.py b/cybox/test/objects/unix_file_test.py
+index c352d03..d04defe 100644
+--- a/cybox/test/objects/unix_file_test.py
++++ b/cybox/test/objects/unix_file_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.unix_file_object import UnixFile, UnixFilePermissions
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/objects/unix_network_route_entry_test.py b/cybox/test/objects/unix_network_route_entry_test.py
+index 2713dd7..9a553c0 100644
+--- a/cybox/test/objects/unix_network_route_entry_test.py
++++ b/cybox/test/objects/unix_network_route_entry_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.unix_network_route_entry_object import UnixNetworkRouteEntry
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/unix_pipe_test.py b/cybox/test/objects/unix_pipe_test.py
+index e313303..49719fb 100644
+--- a/cybox/test/objects/unix_pipe_test.py
++++ b/cybox/test/objects/unix_pipe_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.unix_pipe_object import UnixPipe
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/unix_process_test.py b/cybox/test/objects/unix_process_test.py
+index 4ae8013..23ed8f1 100644
+--- a/cybox/test/objects/unix_process_test.py
++++ b/cybox/test/objects/unix_process_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.unix_process_object import FileDescriptorList, UnixProcess, UnixProcessStatus
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/objects/unix_user_account_test.py b/cybox/test/objects/unix_user_account_test.py
+index fad69d2..41adff3 100644
+--- a/cybox/test/objects/unix_user_account_test.py
++++ b/cybox/test/objects/unix_user_account_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.unix_user_account_object import UnixUserAccount
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/unix_volume_test.py b/cybox/test/objects/unix_volume_test.py
+index a52ad16..8c59e55 100644
+--- a/cybox/test/objects/unix_volume_test.py
++++ b/cybox/test/objects/unix_volume_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.unix_volume_object import UnixVolume
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/uri_test.py b/cybox/test/objects/uri_test.py
+index 9cfb9ba..972a591 100644
+--- a/cybox/test/objects/uri_test.py
++++ b/cybox/test/objects/uri_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.common import AnyURI
+ from cybox.objects.uri_object import URI
+diff --git a/cybox/test/objects/url_history_test.py b/cybox/test/objects/url_history_test.py
+index 6bae3f5..1114f5f 100644
+--- a/cybox/test/objects/url_history_test.py
++++ b/cybox/test/objects/url_history_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.url_history_object import URLHistory, URLHistoryEntry
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/objects/user_account_test.py b/cybox/test/objects/user_account_test.py
+index 99a2dcc..fc69c93 100644
+--- a/cybox/test/objects/user_account_test.py
++++ b/cybox/test/objects/user_account_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.user_account_object import UserAccount
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/volume_test.py b/cybox/test/objects/volume_test.py
+index 254e5ce..28584fb 100644
+--- a/cybox/test/objects/volume_test.py
++++ b/cybox/test/objects/volume_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.volume_object import FileSystemFlagList, Volume
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/objects/whois_test.py b/cybox/test/objects/whois_test.py
+index ae302a5..0543608 100644
+--- a/cybox/test/objects/whois_test.py
++++ b/cybox/test/objects/whois_test.py
+@@ -4,7 +4,7 @@
+ import unittest
+ import uuid
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.bindings.cybox_common import StringObjectPropertyType
+ from cybox.bindings.whois_object import (WhoisContactType,
+diff --git a/cybox/test/objects/win_computer_account_test.py b/cybox/test/objects/win_computer_account_test.py
+index 9ff9220..a21dfe4 100644
+--- a/cybox/test/objects/win_computer_account_test.py
++++ b/cybox/test/objects/win_computer_account_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.compat import long
+ from cybox.objects.win_computer_account_object import WinComputerAccount
+diff --git a/cybox/test/objects/win_critical_section_test.py b/cybox/test/objects/win_critical_section_test.py
+index aa94ee1..aad5976 100644
+--- a/cybox/test/objects/win_critical_section_test.py
++++ b/cybox/test/objects/win_critical_section_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_critical_section_object import WinCriticalSection
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/win_event_test.py b/cybox/test/objects/win_event_test.py
+index 016e2f9..9f89f01 100644
+--- a/cybox/test/objects/win_event_test.py
++++ b/cybox/test/objects/win_event_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_event_object import WinEvent
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/win_executable_file_test.py b/cybox/test/objects/win_executable_file_test.py
+index 42ee1b8..51c45ac 100644
+--- a/cybox/test/objects/win_executable_file_test.py
++++ b/cybox/test/objects/win_executable_file_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_executable_file_object import (
+     DataDirectory, DOSHeader, Entropy, PEBuildInformation, PEChecksum,
+diff --git a/cybox/test/objects/win_file_test.py b/cybox/test/objects/win_file_test.py
+index ea78afa..dfc3ef4 100644
+--- a/cybox/test/objects/win_file_test.py
++++ b/cybox/test/objects/win_file_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.compat import long
+ from cybox.objects.win_file_object import WinFile, WindowsFilePermissions, Stream
+diff --git a/cybox/test/objects/win_filemapping_test.py b/cybox/test/objects/win_filemapping_test.py
+index dedc4c9..26736b2 100644
+--- a/cybox/test/objects/win_filemapping_test.py
++++ b/cybox/test/objects/win_filemapping_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.compat import long
+ from cybox.objects.win_filemapping_object import WinFilemapping
+diff --git a/cybox/test/objects/win_hook_test.py b/cybox/test/objects/win_hook_test.py
+index c9031a0..fb994fa 100644
+--- a/cybox/test/objects/win_hook_test.py
++++ b/cybox/test/objects/win_hook_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_hook_object import WinHook
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/win_memory_page_region_test.py b/cybox/test/objects/win_memory_page_region_test.py
+index c5a8950..cc50ab6 100644
+--- a/cybox/test/objects/win_memory_page_region_test.py
++++ b/cybox/test/objects/win_memory_page_region_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_memory_page_region_object import WinMemoryPageRegion
+ 
+diff --git a/cybox/test/objects/win_mutex_test.py b/cybox/test/objects/win_mutex_test.py
+index 0cb7dc9..2004ed9 100644
+--- a/cybox/test/objects/win_mutex_test.py
++++ b/cybox/test/objects/win_mutex_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_mutex_object import WinMutex
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/win_network_route_entry_test.py b/cybox/test/objects/win_network_route_entry_test.py
+index 29be270..b5a3dff 100644
+--- a/cybox/test/objects/win_network_route_entry_test.py
++++ b/cybox/test/objects/win_network_route_entry_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_network_route_entry_object import WinNetworkRouteEntry
+ 
+diff --git a/cybox/test/objects/win_network_share_test.py b/cybox/test/objects/win_network_share_test.py
+index 34d6ff3..1b2ee76 100644
+--- a/cybox/test/objects/win_network_share_test.py
++++ b/cybox/test/objects/win_network_share_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_network_share_object import WinNetworkShare
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/win_pipe_test.py b/cybox/test/objects/win_pipe_test.py
+index 21fb6c9..3f0a1be 100644
+--- a/cybox/test/objects/win_pipe_test.py
++++ b/cybox/test/objects/win_pipe_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_pipe_object import WinPipe
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/win_prefetch_test.py b/cybox/test/objects/win_prefetch_test.py
+index f1d6c0e..e77b5d1 100644
+--- a/cybox/test/objects/win_prefetch_test.py
++++ b/cybox/test/objects/win_prefetch_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_prefetch_object import WinPrefetch
+ 
+diff --git a/cybox/test/objects/win_process_test.py b/cybox/test/objects/win_process_test.py
+index 0221b37..f917176 100644
+--- a/cybox/test/objects/win_process_test.py
++++ b/cybox/test/objects/win_process_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_process_object import MemorySectionList, StartupInfo, WinProcess
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/objects/win_registry_key_test.py b/cybox/test/objects/win_registry_key_test.py
+index 3636777..f34e1fa 100644
+--- a/cybox/test/objects/win_registry_key_test.py
++++ b/cybox/test/objects/win_registry_key_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.compat import long
+ from cybox.objects.win_registry_key_object import WinRegistryKey
+diff --git a/cybox/test/objects/win_semaphore_test.py b/cybox/test/objects/win_semaphore_test.py
+index f199aa1..c9383c8 100644
+--- a/cybox/test/objects/win_semaphore_test.py
++++ b/cybox/test/objects/win_semaphore_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.compat import long
+ from cybox.objects.win_semaphore_object import WinSemaphore
+diff --git a/cybox/test/objects/win_service_test.py b/cybox/test/objects/win_service_test.py
+index 8366401..f2682fa 100644
+--- a/cybox/test/objects/win_service_test.py
++++ b/cybox/test/objects/win_service_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_service_object import ServiceDescriptionList, WinService
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/objects/win_system_restore_test.py b/cybox/test/objects/win_system_restore_test.py
+index a3c0239..937535e 100644
+--- a/cybox/test/objects/win_system_restore_test.py
++++ b/cybox/test/objects/win_system_restore_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_system_restore_object import WinSystemRestore
+ 
+diff --git a/cybox/test/objects/win_system_test.py b/cybox/test/objects/win_system_test.py
+index c62ba62..da54512 100644
+--- a/cybox/test/objects/win_system_test.py
++++ b/cybox/test/objects/win_system_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_system_object import GlobalFlag, GlobalFlagList, WinSystem
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/objects/win_task_test.py b/cybox/test/objects/win_task_test.py
+index 1411a58..2d6b894 100644
+--- a/cybox/test/objects/win_task_test.py
++++ b/cybox/test/objects/win_task_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.compat import long
+ from cybox.objects.win_task_object import WinTask
+diff --git a/cybox/test/objects/win_thread_test.py b/cybox/test/objects/win_thread_test.py
+index 68b2f5a..42ba4e8 100644
+--- a/cybox/test/objects/win_thread_test.py
++++ b/cybox/test/objects/win_thread_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_thread_object import WinThread
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/win_user_account_test.py b/cybox/test/objects/win_user_account_test.py
+index a08bebd..5bc754c 100644
+--- a/cybox/test/objects/win_user_account_test.py
++++ b/cybox/test/objects/win_user_account_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_user_account_object import WinGroup, WinGroupList, WinPrivilege, WinPrivilegeList, WinUser
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/objects/win_volume_test.py b/cybox/test/objects/win_volume_test.py
+index a13351e..c873892 100644
+--- a/cybox/test/objects/win_volume_test.py
++++ b/cybox/test/objects/win_volume_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_volume_object import WinVolume, WindowsVolumeAttributesList
+ from cybox.test import EntityTestCase
+diff --git a/cybox/test/objects/win_waitable_timer_test.py b/cybox/test/objects/win_waitable_timer_test.py
+index c8d2f0f..d276f35 100644
+--- a/cybox/test/objects/win_waitable_timer_test.py
++++ b/cybox/test/objects/win_waitable_timer_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.win_waitable_timer_object import WinWaitableTimer
+ from cybox.test.objects import ObjectTestCase
+diff --git a/cybox/test/objects/x509_certificate_test.py b/cybox/test/objects/x509_certificate_test.py
+index ce3a67a..5cacbd5 100644
+--- a/cybox/test/objects/x509_certificate_test.py
++++ b/cybox/test/objects/x509_certificate_test.py
+@@ -3,7 +3,7 @@
+ 
+ import unittest
+ 
+-from mixbox.vendor.six import u
++from six import u
+ 
+ from cybox.objects.x509_certificate_object import (SubjectPublicKey,
+                                                    RSAPublicKey, Validity,
+diff --git a/cybox/utils/__init__.py b/cybox/utils/__init__.py
+index 3e8481b..971fe2f 100644
+--- a/cybox/utils/__init__.py
++++ b/cybox/utils/__init__.py
+@@ -5,7 +5,7 @@
+ 
+ import os
+ 
+-from mixbox.vendor import six
++import six
+ 
+ from .caches import *
+ from .nsparser import *
+-- 
+2.39.1
+
