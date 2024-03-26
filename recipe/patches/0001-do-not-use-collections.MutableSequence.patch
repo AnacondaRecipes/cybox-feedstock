@@ -1,6 +1,6 @@
-From cbfcd7f9289c6ca2ae55a40cbcd1ddc4cd1b09a0 Mon Sep 17 00:00:00 2001
+From a61ea532a6084b81214f8def2597f95f62eaf6ac Mon Sep 17 00:00:00 2001
 From: Lorenzo Pirritano <lpirritano@anaconda.com>
-Date: Tue, 26 Mar 2024 14:30:33 -0600
+Date: Tue, 26 Mar 2024 14:49:44 -0600
 Subject: [PATCH] do not use collections.MutableSequence
 
 ---
@@ -8,7 +8,7 @@ Subject: [PATCH] do not use collections.MutableSequence
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/cybox/test/__init__.py b/cybox/test/__init__.py
-index 0b96619..c8f483e 100644
+index 0b96619..e0e2a7e 100644
 --- a/cybox/test/__init__.py
 +++ b/cybox/test/__init__.py
 @@ -42,7 +42,7 @@ def assert_entity_equals(entity, other, name=None, stack=None):
