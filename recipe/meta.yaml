@@ -40,13 +40,6 @@ test:
     - cybox.common
     - cybox.core
     - cybox.objects
-    - cybox.test
-    - cybox.test.common
-    - cybox.test.core
-    - cybox.test.extensions
-    - cybox.test.extensions.location
-    - cybox.test.objects
-    - cybox.test.utils
     - cybox.utils
   requires:
     - pip
