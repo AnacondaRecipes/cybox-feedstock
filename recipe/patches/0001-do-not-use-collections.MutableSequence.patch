@@ -1,0 +1,25 @@
+From a61ea532a6084b81214f8def2597f95f62eaf6ac Mon Sep 17 00:00:00 2001
+From: Lorenzo Pirritano <lpirritano@anaconda.com>
+Date: Tue, 26 Mar 2024 14:49:44 -0600
+Subject: [PATCH] do not use collections.MutableSequence
+
+---
+ cybox/test/__init__.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cybox/test/__init__.py b/cybox/test/__init__.py
+index 0b96619..e0e2a7e 100644
+--- a/cybox/test/__init__.py
++++ b/cybox/test/__init__.py
+@@ -42,7 +42,7 @@ def assert_entity_equals(entity, other, name=None, stack=None):
+     """Assert all of the TypedFields in two Entities are equal."""
+     # Shorten the lines.
+     is_entity      = lambda x: isinstance(x, Entity)
+-    is_mutableseq  = lambda x: isinstance(x, collections.MutableSequence)
++    is_mutableseq  = lambda x: isinstance(x, collections.abc.MutableSequence)
+ 
+     if stack is None:
+         stack = []
+-- 
+2.39.1
+
