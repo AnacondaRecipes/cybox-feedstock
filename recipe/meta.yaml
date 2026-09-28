@@ -13,13 +13,10 @@ source:
     - patches/0001-do-not-use-collections.MutableSequence.patch  # [py>39]
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
-  build:
-    - patch       # [not win]
-    - m2-patch    # [win]
   host:
     - python
     - pip
